@@ -11,39 +11,28 @@ class Rover {
   }
 
   moveForward() {
-    const facingNorth = this.facing === "N";
-    const facingSouth = this.facing === "S";
-    const facingEast = this.facing === "E";
-    const facingWest = this.facing === "W";
-
-    if (facingNorth) return (this.y += 1);
-    if (facingSouth) return (this.y -= 1);
-    if (facingEast) return (this.x += 1);
-    if (facingWest) return (this.x -= 1);
+    if (this.facing === "N") return (this.y += 1);
+    if (this.facing === "S") return (this.y -= 1);
+    if (this.facing === "E") return (this.x += 1);
+    if (this.facing === "W") return (this.x -= 1);
   }
 
   rotateLeft() {
-    const facingNorth = this.facing === "N";
-    const facingSouth = this.facing === "S";
-    const facingEast = this.facing === "E";
-    const facingWest = this.facing === "W";
-
-    if (facingNorth) return (this.facing = "W");
-    if (facingSouth) return (this.facing = "E");
-    if (facingEast) return (this.facing = "N");
-    if (facingWest) return (this.facing = "S");
+    if (this.facing === "N") return (this.facing = "W");
+    if (this.facing === "S") return (this.facing = "E");
+    if (this.facing === "E") return (this.facing = "N");
+    if (this.facing === "W") return (this.facing = "S");
   }
 
   rotateRight() {
-    const facingNorth = this.facing === "N";
-    const facingSouth = this.facing === "S";
-    const facingEast = this.facing === "E";
-    const facingWest = this.facing === "W";
+    if (this.facing === "N") return (this.facing = "E");
+    if (this.facing === "S") return (this.facing = "W");
+    if (this.facing === "E") return (this.facing = "S");
+    if (this.facing === "W") return (this.facing = "N");
+  }
 
-    if (facingNorth) return (this.facing = "E");
-    if (facingSouth) return (this.facing = "W");
-    if (facingEast) return (this.facing = "S");
-    if (facingWest) return (this.facing = "N");
+  formatOutput(x, y, facing) {
+    return String(`${x} ${y} ${facing}`);
   }
 
   getFinalPosition() {
@@ -58,7 +47,7 @@ class Rover {
         this.rotateRight();
       }
     });
-    return `${String(this.x)} ${String(this.y)} ${String(this.facing)}`;
+    return this.formatOutput(this.x, this.y, this.facing);
   }
 }
 
