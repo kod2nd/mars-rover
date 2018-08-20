@@ -1,4 +1,3 @@
-// const getFinalPosition = require("./main");
 const Rover = require("./Rover");
 
 describe("Single forward movement", () => {
