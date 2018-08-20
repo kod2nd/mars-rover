@@ -4,13 +4,31 @@ class Rover {
     this.y = Number(initialPositionInput.slice().split(" ")[1]);
     this.facing = initialPositionInput.slice().split(" ")[2];
     this.movements = [];
+    this.plateauMaxBound = {};
   }
 
   getMovementInput(movementInput) {
-    this.movements = movementInput.slice().split("");
+    return (this.movements = movementInput.slice().split(""));
+  }
+
+  getPlateauSize(plateauSize) {
+    return (this.plateauMaxBound = plateauSize);
+  }
+
+  checkIfOutOfBounds() {
+    const outOfBounds =
+      this.x > this.plateauMaxBound.x ||
+      this.y > this.plateauMaxBound.y ||
+      this.x < 0 ||
+      this.y < 0;
+
+    if (outOfBounds) {
+      return true;
+    }
   }
 
   moveForward() {
+    if (this.checkIfOutOfBounds()) return;
     if (this.facing === "N") return (this.y += 1);
     if (this.facing === "S") return (this.y -= 1);
     if (this.facing === "E") return (this.x += 1);
@@ -18,6 +36,7 @@ class Rover {
   }
 
   rotateLeft() {
+    if (this.checkIfOutOfBounds()) return;
     if (this.facing === "N") return (this.facing = "W");
     if (this.facing === "S") return (this.facing = "E");
     if (this.facing === "E") return (this.facing = "N");
@@ -25,6 +44,7 @@ class Rover {
   }
 
   rotateRight() {
+    if (this.checkIfOutOfBounds()) return;
     if (this.facing === "N") return (this.facing = "E");
     if (this.facing === "S") return (this.facing = "W");
     if (this.facing === "E") return (this.facing = "S");
@@ -32,14 +52,27 @@ class Rover {
   }
 
   formatOutput(x, y, facing) {
+    if (x > this.plateauMaxBound.x) {
+      return String(`${this.plateauMaxBound.x} ${y} ${facing} RIP`);
+    }
+    if (x < 0) {
+        return String(`0 ${y} ${facing} RIP`);
+    }
+    if (y > this.plateauMaxBound.y) {
+        return String(`${x} ${this.plateauMaxBound.y} ${facing} RIP`);
+    }
+    if (y < 0) {
+        return String(`${x} 0 ${facing} RIP`);
+    }
     return String(`${x} ${y} ${facing}`);
   }
 
-  getFinalPosition() {
+  displayFinalPosition() {
     this.movements.forEach(movement => {
       if (movement === "M") {
         this.moveForward();
       }
+
       if (movement === "L") {
         this.rotateLeft();
       }
