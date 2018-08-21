@@ -1,4 +1,5 @@
 class Rover {
+  // When using constructors use the 'HAS A' test
   constructor(initialPositionInput) {
     this.x = Number(initialPositionInput.slice().split(" ")[0]);
     this.y = Number(initialPositionInput.slice().split(" ")[1]);
