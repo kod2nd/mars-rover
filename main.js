@@ -1,6 +1,6 @@
-const { getUserInput, rl } = require("./readline-helper");
-const Rover = require("./Rover");
-const Plateau = require("./Plateau");
+const { getUserInput, rl } = require("./src/utils/readline-helper");
+const Rover = require("./src/Models/Rover");
+const Plateau = require("./src/Models/Plateau");
 
 const log = data => {
   return console.log(data);

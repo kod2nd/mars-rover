@@ -1,4 +1,4 @@
-const Plateau = require("./Plateau")
+const Plateau = require("../Models/Plateau")
 
 test('Number of rovers to be 2, when 2 is passed', () => {
     const testPlateau = new Plateau("5 5")

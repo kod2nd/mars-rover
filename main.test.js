@@ -1,6 +1,6 @@
 const mockGetUserInput = jest.fn()
 
-jest.doMock('./readline-helper.js', () => {
+jest.doMock('./src/utils/readline-helper.js', () => {
     return {
         getUserInput: mockGetUserInput
     }

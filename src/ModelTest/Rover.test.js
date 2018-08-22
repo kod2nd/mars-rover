@@ -1,5 +1,5 @@
-const Rover = require("./Rover");
-const Plateau = require("./Plateau");
+const Rover = require("../Models/Rover");
+const Plateau = require("../Models/Plateau");
 
 describe("Single forward movement", () => {
   test("When starting from 0,0,N with movement M, should return 0 1 N", () => {
@@ -93,7 +93,7 @@ describe("Out of Bounds Plateau size 5 5", () => {
       const testRover = new Rover("0 0 S");
       testRover.getPlateauSize(plateauSize);
       testRover.getMovementInput("MMRML");
-      expect(testRover.displayFinalPosition()).toBe("0 0 S RIP");
+      expect(testRover.displayFinalPosition("MMRML")).toBe("0 0 S RIP");
     });
     test("When starting from 0,0,W with movement MRRML, rover should fall off and should return 0 0 W RIP", () => {
       const testPlateau = new Plateau("5 5");
